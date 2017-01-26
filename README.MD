@@ -1,5 +1,5 @@
 # Groovy + Cucumber
 
-Gradle Run: `gradle --continuec
+Gradle Run: `gradle --continue`
 
 Default Tasks: `'clean', 'cucumber', 'report'`
