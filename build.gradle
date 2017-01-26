@@ -1,11 +1,7 @@
 group 'cucumber-test'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
 apply plugin: 'groovy'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 def cucumberVersion = "1.2.5"
 
@@ -13,6 +9,11 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.3'
     cucumberRuntime files("${jar.archivePath}")
@@ -20,12 +21,6 @@ dependencies {
     testCompile "info.cukes:cucumber-junit:$cucumberVersion"
     testCompile "info.cukes:cucumber-groovy:$cucumberVersion"
     compile group: 'net.masterthought', name: 'cucumber-reporting', version: '3.4.0'
-}
-
-configurations {
-    cucumberRuntime {
-        extendsFrom testRuntime
-    }
 }
 
 task cucumber() {
