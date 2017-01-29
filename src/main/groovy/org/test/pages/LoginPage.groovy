@@ -7,7 +7,7 @@ import org.test.logic.Users
 import static com.codeborne.selenide.Selenide.$
 
 /**
- * Created by note on 1/26/2017.
+ * Created by artyom on 1/26/2017.
  */
 class LoginPage{
     def loginAs(def users){

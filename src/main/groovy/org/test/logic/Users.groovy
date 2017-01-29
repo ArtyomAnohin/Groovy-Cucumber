@@ -3,7 +3,7 @@ package org.test.logic
 import groovy.json.JsonSlurper
 
 /**
- * Created by note on 1/26/2017.
+ * Created by artyom on 1/26/2017.
  */
 class Users {
 }

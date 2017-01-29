@@ -6,7 +6,7 @@ import org.test.logic.Client
 import static com.codeborne.selenide.Selenide.$
 
 /**
- * Created by note on 1/26/2017.
+ * Created by artyom on 1/26/2017.
  */
 class ClientsListPage {
     def verifyClient(Client client){

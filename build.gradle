@@ -1,47 +1,43 @@
 group 'cucumber-test'
 version '1.0-SNAPSHOT'
-
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.samueltbrown:gradle-cucumber-plugin:0.8"
+        classpath "info.cukes:cucumber-core:1.2.2"
+    }
+}
 apply plugin: 'groovy'
-
+apply plugin: "com.github.samueltbrown.cucumber"
 def cucumberVersion = "1.2.5"
 
 repositories {
     mavenCentral()
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom testRuntime
-    }
-}
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.3'
     cucumberRuntime files("${jar.archivePath}")
     testCompile 'junit:junit:4.11'
-    testCompile "info.cukes:cucumber-junit:$cucumberVersion"
-    testCompile "info.cukes:cucumber-groovy:$cucumberVersion"
-    testCompile "info.cukes:cucumber-core:$cucumberVersion"
+    compile "info.cukes:cucumber-core:$cucumberVersion"
+    compile "info.cukes:cucumber-groovy:$cucumberVersion"
     compile group: 'net.masterthought', name: 'cucumber-reporting', version: '3.4.0'
     compile group: 'com.codeborne', name: 'selenide', version: '4.2'
 }
 
-task cucumber() {
-    dependsOn assemble
-    doLast {
-        javaexec {
-            main = "cucumber.api.cli.Main"
-            classpath = configurations.cucumberRuntime
-            args = ['--plugin', 'pretty', '--glue', 'src/test/groovy/org/test/steps', 'src/test/resources/features', '--format', 'json:build/cucumber.json']
-
-        }
-    }
-}
-
-task report (dependsOn: 'classes', type: JavaExec) {
+task report(dependsOn: 'classes', type: JavaExec) {
     main = 'org.test.report.Report'
     classpath = sourceSets.main.runtimeClasspath
 }
+cucumber {
+    formats = [
+            'pretty',
+            'junit:build/cucumber.xml',
+            'json:build/cucumber.json'
+    ]
+    glueDirs = ["src/test/groovy/org/test/steps"]
+}
 
-build.dependsOn cucumber
-
-defaultTasks 'clean', 'cucumber', 'report'
+defaultTasks 'clean', 'cucumber2', 'report'

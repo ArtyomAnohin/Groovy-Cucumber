@@ -1,20 +1,18 @@
 package org.test.steps
 
-import com.codeborne.selenide.Configuration
-import cucumber.api.PendingException
 import org.test.SetUp
 import org.test.logic.Client
 import org.test.logic.Nurse
-import org.test.logic.Users
 import org.test.pages.ClientsListPage
 import org.test.pages.LoginPage
 import org.test.pages.MainPage
 import org.test.pages.NewClientPage
 
+
 import static cucumber.api.groovy.EN.*
 
 /**
- * Created by note on 1/26/2017.
+ * Created by artyom on 1/26/2017.
  */
 
 SetUp.setUp()
